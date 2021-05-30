@@ -19,19 +19,25 @@
 <table>
   <thead>
     <tr>
-      <th>Peso promedio</th>
-      <th>Altura promedio</th>
+      <th>Peso Promedio</th>
+      <th>Altura Promedio</th>
       <th>Peso Máximo</th>
       <th>Altura Máxima</th>
+      <th>Peso</th>
+      <th>Altura</th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
       <td><%= @pet.avg_weight %></td>
-      <td><%= @pet.avg_height %></td>
+      <td><%= @pet.avg_heigth %></td>
       <td><%= @pet.max_weight %></td>
-      <td><%= @pet.max_height%></td>
+      <td><%= @pet.max_heigth%></td>
+      <% @pet.pet_histories.each do |history|%>
+        <td><%=history.weight  %></td>
+        <td><%=history.heigth %></td>
+      <% end %>
     </tr>
   </tbody>
 </table>

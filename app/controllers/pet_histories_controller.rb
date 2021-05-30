@@ -15,16 +15,19 @@ class PetHistoriesController < ApplicationController
   # GET /pet_histories/new
   def new
     @pet_history = PetHistory.new
+    @pets = Pet.pluck :name, :id #Pluck disponibiliza atributos de otro modelo
   end
 
   # GET /pet_histories/1/edit
   def edit
+    @pets = Pet.pluck :name, :id 
   end
 
   # POST /pet_histories
   # POST /pet_histories.json
   def create
     @pet_history = PetHistory.new(pet_history_params)
+    @pets = Pet.pluck :name, :id
 
     respond_to do |format|
       if @pet_history.save
@@ -69,6 +72,6 @@ class PetHistoriesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pet_history_params
-      params.require(:pet_history).permit(:weight, :heigth, :description)
+      params.require(:pet_history).permit(:weight, :heigth, :description, :pet_id)
     end
 end

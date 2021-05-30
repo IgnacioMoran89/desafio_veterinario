@@ -15,16 +15,19 @@ class PetsController < ApplicationController
   # GET /pets/new
   def new
     @pet = Pet.new
+    @clients = Client.pluck :name, :id #Pluck disponibiliza atributos de otro modelo
   end
 
   # GET /pets/1/edit
   def edit
+    @clients = Client.pluck :name, :id
   end
 
   # POST /pets
   # POST /pets.json
   def create
     @pet = Pet.new(pet_params)
+    @clients = Client.pluck :name, :id
 
     respond_to do |format|
       if @pet.save
@@ -69,6 +72,6 @@ class PetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pet_params
-      params.require(:pet).permit(:name, :race, :birthdate)
+      params.require(:pet).permit(:name, :race, :birthdate, :client_id)
     end
 end
